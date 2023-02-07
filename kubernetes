@@ -1,0 +1,58 @@
+#!/bin/bash
+SVER='0.1.0'
+##############################################################################
+#  kubernetes - Kubernetes supportconfig plugin
+#  Copyright (C) 2023 SUSE LLC
+#
+#  Copy to the /usr/lib/supportconfig/plugins directory and change mode to
+#  executable. It will collect Kubernetes related information.
+#
+##############################################################################
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; version 2 of the License.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, see <http://www.gnu.org/licenses/>.
+#
+#  Authors/Contributors:
+#     Jason Record <jason.record@suse.com>
+#     Nicola Di Marzo <nicola.dimarzo@suse.com>
+##############################################################################
+OF="kubernetes.txt"
+RC="/usr/lib/supportconfig/resources/supportconfig.rc"
+KDIR="${LOG}/rancher2_logs_collector"
+COLLECTOR_DIR='/usr/local/sbin'
+echo "Kubernetes supportconfig plugin v${SVER}"
+echo "See $OF for details"
+if [[ -s $RC ]]; then
+        . $RC
+else
+        echo "ERROR: File not found - $RC"
+        exit 1
+fi
+mkdir -p $KDIR
+if [ ! -f  ${COLLECTOR_DIR}/rancher2_logs_collector.sh  ]; then
+  echo -e "Collector rancher2_logs_collector.sh not found in /usr/local/sbin\nYou can download it and install it by running:\n";
+  echo -e 'sudo curl -Ls rnch.io/rancher2_logs -o /usr/local/sbin/rancher2_logs_collector.sh'
+  exit 1
+elif rpm -qa | grep -i kubeadm  2>&1 > /dev/null && $(kubeadm version >/dev/null 2>&1); then
+   echo "K8S kubeadm distro detected and collecting logs..."   
+   log_cmd $OF "bash ${COLLECTOR_DIR}/rancher2_logs_collector.sh -d $KDIR -r kubeadm"
+else
+   echo "Collecting Rancher logs..."
+   log_cmd $OF "bash ${COLLECTOR_DIR}/rancher2_logs_collector.sh -d $KDIR"
+fi
+cd $KDIR
+for i in *gz
+do
+        tar xf $i
+        rm $i
+done
+exit 0
