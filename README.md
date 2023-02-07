@@ -13,9 +13,6 @@ Rancher collector script can be installed on any cluster nodes by running:
 
 `sudo curl -Ls rnch.io/rancher2_logs -o /usr/local/sbin/rancher2_logs_collector.sh`
 
-Plugin Script
-
-
 ## Installation Instructions
 
 Download the Plugin Script and send kubernetes.gz to the customer
@@ -35,6 +32,7 @@ Set the correct plugin permission:
 Once installed the plugin will be available in the list of supportconfig modules (pkubernetes):
 
 `sudo supportconfig -F
+
 APPARMOR AUDIT AUTOFS BOOT BTRFS DAEMONS CIMOM CRASH CRON DHCP DISK DNS DOCKER DRBD EMAIL ENV ETC HA HAPROXY HISTORY IB ISCSI LDAP LVM MEM MOD MPIO NET NFS NTP NVME OCFS2 OFILES PODMAN PRINT PROC SAR SLERT SLP SMT SMART SMB SRAID SSH SSSD SYSCONFIG SYSFS TRANSACTIONAL TUNED UDEV UFILES UP WEB X LIVEPATCH aFSLIST aLOGS aMINDISK aMAXYAST aRPMV aSLP aLOCAL_ONLY pkubernetes`
 
 In order to only collect the plugin's (k8s) logs, run:
