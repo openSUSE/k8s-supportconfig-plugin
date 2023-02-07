@@ -1,6 +1,7 @@
 # k8s-supportconfig-plugin
 
-Kubernetes plugin log collector for supportconfig part of the [supportutils](https://github.com/openSUSE/supportutils) suite.
+Kubernetes plugin log collector for supportconfig part of the [supportutils](https://github.com/openSUSE/supportutils) package.
+
 NOTE: The instructions have been tested on openSUSE and SUSE systems.
 
 ## Overview
@@ -16,17 +17,17 @@ Rancher collector script can be installed on any cluster nodes by running:
 
 ## Installation Instructions
 
-Get `kubernetes` plugin and copy it in `/usr/lib/supportconfig/plugins`
+1) Get `kubernetes` plugin and copy it in `/usr/lib/supportconfig/plugins`
 
-Fetch and install rancher's collector script: 
+2) Fetch and install rancher's collector script: 
 
-`sudo curl -Ls rnch.io/rancher2_logs -o /usr/local/sbin/rancher2_logs_collector.sh`
+   `sudo curl -Ls rnch.io/rancher2_logs -o /usr/local/sbin/rancher2_logs_collector.sh`
 
-Alternatevely, copy it in the correct location `/usr/local/sbin/rancher2_logs_collector.sh`
+   Alternatevely, copy it in the correct location `/usr/local/sbin/rancher2_logs_collector.sh`
 
-Set the correct plugin permission:
+3) Set the correct plugin permission:
 
-`chmod 755 /usr/lib/supportconfig/plugins/kubernetes`
+   `chmod 755 /usr/lib/supportconfig/plugins/kubernetes`
 
 Once installed the plugin will be available in the list of supportconfig modules (pkubernetes):
 
