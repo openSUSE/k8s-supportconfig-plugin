@@ -22,7 +22,7 @@ Fetch and install rancher's collector script:
 
 `sudo curl -Ls rnch.io/rancher2_logs -o /usr/local/sbin/rancher2_logs_collector.sh`
 
-Alternatevely, copy it in the correct location /usr/local/sbin/rancher2_logs_collector.sh
+Alternatevely, copy it in the correct location `/usr/local/sbin/rancher2_logs_collector.sh`
 
 Set the correct plugin permission:
 
