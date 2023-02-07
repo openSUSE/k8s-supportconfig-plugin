@@ -9,7 +9,7 @@ This script purpose is to include [Rancher's log collector](https://github.com/r
 
 I made a contribution upstream recently to Rancher's log collector script which added the support for Kubeadm clusters using the switch `-r kubeadm`, on top of the already existent collections for Rancher environments.
 
-The script auto-detects the environemnt and treis to collect logs for control planes (masters) and workers (agents) components and collect info such api-resource, nodes, metrics, certificates state and many more...
+The script auto-detects the environemnt and tries to collect logs for control planes (masters) and workers (agents) components and collect info such api-resource, nodes, metrics, certificates state and many more...
 
 Rancher collector script can be installed on any cluster nodes by running:
 
